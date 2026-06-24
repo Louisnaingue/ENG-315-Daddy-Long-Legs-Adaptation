@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dear Unknown</title>
+
+<link rel="stylesheet" href="connect.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- POPUPS -->
+<div id="welcomePopup" class="popup" style="display:flex;">
+    <div class="popup-content">
+        <h2>Chapter 1</h2>
+        <p>
+            Jerusha Abbott grows up in a poor family with little emotional support and a constant fear of being left behind in life. When she unexpectedly receives a scholarship from an unknown benefactor to attend college, she eagerly accepts and begins a new chapter of her education. As part of the agreement, she writes monthly emails to her anonymous sponsor, whom she calls “Daddy Long Legs”.
+        </p>
+        <button onclick="closePopup()">Open Message</button>
+    </div>
+</div>
+
+<div id="secondPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+        <h2>Chapter 2</h2>
+        <p>College life helps Jerusha discover new confidence and independence. Writing becomes a personal outlet, and she begins signing her emails as “Judy,” a version of herself who feels stronger, more courageous, and ready to embrace new opportunities.</p>
+        <button onclick="openSecondLetter()">Open Message</button>
+    </div>
+</div>
+
+<div id="thirdPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+        <h2>Chapter 3</h2>
+        <p>In her sophomore year, Judy begins to feel more at home at BYU-Hawaii. She continues writing her letters.</p>
+        <button onclick="openThirdLetter()">Open Message</button>
+    </div>
+</div>
+<div id="fourthPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+        <h2>Chapter 4</h2>
+        <p>
+            Jerusha develops a close relationship with Jervis Pendelton, whom she meets through an online dating app. As both relationships deepen, she notices unusual similarities in the messages she receives and becomes suspicious about their origins.
+        </p>
+        <button onclick="openFourthLetter()">Open Message</button>
+    </div>
+</div>
+<div id="fifthPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+        <h2>Chapter 5</h2>
+        <p>
+            Jerusha discovers that both “Daddy Long Legs” and Jervis Pendelton are AI systems created by the institution sponsoring her education. Although shocked to realize that neither relationship involved a real person, she reflects on her personal growth and questions whether the emotions and lessons gained through these artificial connections are any less meaningful.
+        </p>
+        <button onclick="openFifthLetter()">Open Message</button>
+    </div>
+</div>
+
+<!-- SIDEBAR (UNCHANGED) -->
+<aside class="sidebar">
+
+    <div class="sidebar-header">
+        <h1>Connect</h1>
+    </div>
+
+    <div class="search">
+        <input type="text" placeholder="Search Messenger">
+    </div>
+
+    <div class="conversation active">
+        <div class="avatar">?</div>
+        <div class="conversation-info">
+            <h3>Daddy Long Legs</h3>
+            <p>seen</p>
+        </div>
+        <span class="time">Now</span>
+    </div>
+
+    <div class="conversation">
+        <div class="avatar1">CL</div>
+        <div class="conversation-info">
+            <h3>Caryn Lesuma</h3>
+            <p>Good Luck</p>
+        </div>
+        <span class="time">2m</span>
+    </div>
+
+    <div class="conversation">
+        <div class="avatar2">FA</div>
+        <div class="conversation-info">
+            <h3>Financial Aid</h3>
+            <p>Your scholarship packet is ready.</p>
+        </div>
+        <span class="time">1h</span>
+    </div>
+
+    <div class="conversation">
+        <div class="avatar3">JP</div>
+        <div class="conversation-info">
+            <h3>Jervis Pendelton</h3>
+            <p> I hope you had a pleasant and productive day.</p>
+        </div>
+        <span class="time">1h</span>
+    </div>
+
+</aside>
+
+<!-- CHAT -->
+<main class="chat">
+
+<header class="chat-header">
+    <div class="profile">
+        <div class="avatar">?</div>
+        <div>
+            <h2>Daddy Long Legs</h2>
+            <span class="online">● Active now</span>
+        </div>
+    </div>
+</header>
+
+<section class="messages">
+    <div class="system-tag">Messages are end-to-end encrypted</div>
+    <div id="chatBox"></div>
+</section>
+
+<footer class="choices">
+    <div class="choice" onclick="sendChoice(this)">P.S. What are you like in real life?</div>
+    <div class="choice" onclick="sendChoice(this)">P.S. BYU-Hawaii is pretty!</div>
+    <div class="choice" onclick="sendChoice(this)">P.S. Are you just gonna see my messages?</div>
+</footer>
+
+</main>
+</div>
+
+<script>
+let chapter = 1;
+
+/* typing helper */
+function showTyping(chatBox, callback) {
+
+    setTimeout(() => {
+        chatBox.innerHTML += `
+        <div id="typing" class="message received typing-bubble">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        `;
+
+        setTimeout(() => {
+            const t = document.getElementById("typing");
+            if (t) t.remove();
+            if (callback) callback();
+        }, 2000);
+
+    }, 800);
+}
+
+/* CHAPTER 1 */
+function closePopup() {
+    document.getElementById("welcomePopup").style.display = "none";
+
+    const chatBox = document.getElementById("chatBox");
+
+    chatBox.innerHTML += `
+    <div class="msg-group">
+        <div class="letter-message">
+            <div class="letter-content">
+                Dear Daddy Long Legs,<br><br>
+
+                They told me that I am to write you a letter each month, and I think this is strange. Writing letters to someone I have never met and who will never write back. But here I am.<br><br>
+
+                Thank you for allowing me to attend college. You do not know how much this means to me.<br><br>
+
+                At the moment, I have the whole room to myself because my roommate will not be here till next semester. It is actually a beautiful hale, and I have four unitmates.<br><br>
+
+                I think I shall call you Daddy Long Legs because I imagined you had long legs, just like the spider I saw on the day I received the scholarship.<br><br>
+
+                Yours respectfully,<br><br>
+
+                Jerusha Abbott
+            </div>
+        </div>
+        <div class="seen">Seen</div>
+    </div>
+    `;
+
+    showTyping(chatBox);
+}
+
+/* CHOICE SYSTEM */
+function sendChoice(element) {
+
+    const text = element.textContent.trim();
+    const chatBox = document.getElementById("chatBox");
+
+    chatBox.innerHTML += `
+    <div class="msg-group">
+        <div class="message sent">${text}</div>
+        <div class="seen">Seen</div>
+    </div>
+    `;
+
+    document.querySelectorAll(".choice").forEach(c => {
+        c.style.pointerEvents = "none";
+        c.style.opacity = "0.5";
+    });
+
+    showTyping(chatBox, () => {
+
+        chatBox.innerHTML += `<div class="system-tag">No reply.</div>`;
+
+        setTimeout(() => {
+
+            if (chapter === 1) {
+                document.getElementById("secondPopup").style.display = "flex";
+                chapter = 2;
+            }
+
+            else if (chapter === 2) {
+                document.getElementById("thirdPopup").style.display = "flex";
+                chapter = 3;
+            }
+
+            else if (chapter === 3) {
+                document.getElementById("fourthPopup").style.display = "flex";
+                chapter = 4;
+            }
+
+            else if (chapter === 4) {
+                document.getElementById("fifthPopup").style.display = "flex";
+                chapter = 5;
+            }
+
+        }, 1000);
+    });
+}
+
+/* CHAPTER 2 */
+function openSecondLetter() {
+
+    document.getElementById("secondPopup").style.display = "none";
+
+    const chatBox = document.getElementById("chatBox");
+
+    chatBox.innerHTML += `
+    <div class="msg-group">
+        <div class="letter-message">
+            <div class="letter-content">
+                Dear Daddy Long Legs,<br><br>
+
+                Life at BYU Hawaii is slowly starting to feel more real to me. I have met two friends, Julia and Sallie, and they have been really kind. It feels good not being alone all the time anymore.
+
+                <br><br>
+          
+                My teacher, Professor Lesuma, is also amazing. She makes learning feel easy to understand and even enjoyable, which I did not expect.
+                <br><br>
+
+                But I still struggle sometimes. Everyone here seems rich and elegant, and I often feel like I do not really fit in. I try my best to adjust, but there are moments when I feel out of place.
+                <br><br>
+
+                Still, I am learning and trying to grow each day.
+                <br><br>
+
+                Yours,
+                <br>
+                Judy
+            </div>
+        </div>
+        <div class="seen">Seen</div>
+    </div>
+    `;
+
+    showTyping(chatBox);
+
+    document.querySelector(".choices").innerHTML = `
+    <div class="choice" onclick="sendChoice(this)">P.S. Did you go to BYU–Hawaii too?</div>
+    <div class="choice" onclick="sendChoice(this)">P.S. Are you really bald?</div>
+    <div class="choice" onclick="sendChoice(this)">P.S. I hope to see you soon.</div>
+`;
+}
+
+/* CHAPTER 3 */
+function openThirdLetter() {
+
+document.getElementById("thirdPopup").style.display = "none";
+
+const chatBox = document.getElementById("chatBox");
+
+chatBox.innerHTML += `
+<div class="msg-group">
+    <div class="letter-message">
+        <div class="letter-content">
+       Dear Daddy Long Legs,<br><br>
+
+        I’m starting to get used to college life now. I’m a sophomore, and I feel like I’ve already learned so many things along the way. This semester, I’m taking ENG 315. I can’t be more grateful for the experience you’ve given me.<br><br>
+
+        Although you still haven’t let me know who you are, I sometimes wonder what kind of person you might be. Maybe you’re bald, or maybe you’re too old to even notice me if we passed each other.<br><br>
+
+        I hope to receive at least one message from you soon.<br><br>
+
+        Yours,<br>
+        Judy
+        </div>
+    </div>
+    <div class="seen">Seen</div>
+</div>
+`;
+
+showTyping(chatBox, () => {
+
+    // 👇 Daddy Long Legs message appears AFTER typing
+    daddyReplyChapter3(chatBox);
+
+});
+
+document.querySelector(".choices").innerHTML = `
+    <div class="choice" onclick="sendChoice(this)">P.S. Are you proud of me?</div>
+    <div class="choice" onclick="sendChoice(this)">P.S. Will you ever tell me who you are?</div>
+    <div class="choice" onclick="sendChoice(this)">P.S. Do you read all my letters?</div>
+`;
+}
+function openFourthLetter() {
+
+document.getElementById("fourthPopup").style.display = "none";
+
+const chatBox = document.getElementById("chatBox");
+
+chatBox.innerHTML += `
+<div class="msg-group">
+    <div class="letter-message">
+        <div class="letter-content">
+            Dear Daddy Long Legs,<br><br>
+
+            I hope you are doing well with your old chair. I have also met someone through an online dating app; his name is Jervis Pendelton. It is nice to have someone you can talk to and who really responds to your messages.<br><br>
+
+            I don’t know why, but I feel the same comfort from him as I do when I write to you. I feel like I can be open and know that no one will judge me. Anyway, I’m excited to see him in person.<br><br>
+
+            I hope I can finally see you.<br><br>
+
+            Yours,<br>
+            Judy
+        </div>
+    </div>
+    <div class="seen">Seen</div>
+</div>
+`;
+
+showTyping(chatBox, () => {
+
+    // Jervis notification
+    showJervisNotification();
+
+    // 👇 ADD CHAPTER 4 CHOICES AFTER EVERYTHING
+    setTimeout(() => {
+
+        document.querySelector(".choices").innerHTML = `
+            <div class="choice" onclick="sendChoice(this)">
+                P.S. He looks so handsome in his profile.
+            </div>
+
+            <div class="choice" onclick="sendChoice(this)">
+                P.S. He sounds so smart and eloquent.
+            </div>
+
+            <div class="choice" onclick="sendChoice(this)">
+                P.S. He seems to like me.
+            </div>
+        `;
+
+    }, 1500);
+
+});
+
+}
+
+function showJervisNotification() {
+
+const notif = document.createElement("div");
+
+notif.className = "jervis-notif";
+notif.innerHTML = `
+    <strong>Jervis Pendelton</strong><br>
+    I hope you had a pleasant and productive day.
+`;
+
+document.body.appendChild(notif);
+
+setTimeout(() => {
+    notif.remove();
+}, 5000);
+}
+function daddyReplyChapter3(chatBox) {
+
+setTimeout(() => {
+
+    chatBox.innerHTML += `
+    <div class="msg-group">
+        <div class="message received">
+            I hope you had a pleasant and productive day.
+        </div>
+        <div class="seen">Seen</div>
+    </div>
+    `;
+
+}, 1200);
+}
+function openFifthLetter() {
+
+document.getElementById("fifthPopup").style.display = "none";
+
+const chatBox = document.getElementById("chatBox");
+
+
+showTyping(chatBox, () => {
+
+    // FINAL SYSTEM END STATE
+    chatBox.innerHTML += `
+        <div class="system-tag">Connection blocked.</div>
+    `;
+
+    // Disable ALL choices permanently
+    document.querySelector(".choices").innerHTML = `
+        <div class="system-tag">End of Story.</div>
+    `;
+
+    // Optional visual lock
+    document.querySelector(".chat-header .online").textContent = "● Blocked";
+
+    lockDaddyLongLegs();
+});
+
+}
+
+
+</script>
+
+</body>
+</html>

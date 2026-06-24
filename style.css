@@ -1,0 +1,81 @@
+body {
+    font-family: 'Georgia', serif;
+
+    background:
+        linear-gradient(
+        #c9b091,
+        rgba(181, 75, 9, 0.3)
+    ),
+        url("image/daddy.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    margin: 0;
+    padding: 0;
+    color: rgb(22, 19, 16);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+h1 {
+    letter-spacing: 1.5px;
+    margin: 0;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+p {
+    margin: 0;
+    font-size: 15px;
+    text-align: center;
+}
+.par {
+    margin-bottom: 5%;
+}
+div {
+    text-align: center; /* This forces the <a> button and text to align to the middle */
+  }
+
+
+.glass-btn {
+    display: block;
+    margin: 20px auto;
+
+    padding: 12px 35px;
+    letter-spacing: 1px;
+    font-size: 20px;
+    font-family: 'Great Vibes', cursive;
+    color: #621402;
+
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.glass-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(123, 116, 116, 0.3);
+}
+.par2 {
+    max-width: 420px;       /* Restricts the width so it doesn't stretch too wide */
+    margin: 24px auto;     /* Centers it horizontally and adds breathing room top/bottom */
+    line-height: 1.6;      /* Gives the text nice readability */
+    font-size: 16px;       
+    color: #5c5043;        /* A soft, readable book-ish color */
+}

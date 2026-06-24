@@ -1,0 +1,198 @@
+/* ==========================================================================
+   1. Base Reset & Layout
+   ========================================================================== */
+   * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    /* Warm cream background matching the screenshot */
+    background-color: #f6ebd9; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #332d27;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  
+  .chapters-container {
+    width: 100%;
+    max-width: 680px; /* Restricts width to keep it looking clean and centered */
+  }
+  
+  /* ==========================================================================
+     2. Header Styles
+     ========================================================================== */
+  .chapters-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  
+  .back-btn {
+    font-size: 24px;
+    color: #564c40;
+    text-decoration: none;
+    line-height: 1;
+    padding-top: 4px;
+    transition: transform 0.2s ease;
+  }
+  
+  .back-btn:hover {
+    transform: translateX(-4px);
+  }
+  
+  .header-text h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #27211a;
+    margin-bottom: 4px;
+  }
+  
+  .progress-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: #8c7e6d;
+    letter-spacing: 0.5px;
+  }
+  
+  /* ==========================================================================
+     3. Chapter Cards Layout
+     ========================================================================== */
+  .chapters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Spacing between cards */
+  }
+  
+  .chapter-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    border-radius: 4px; /* Subtle rounded corners */
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  /* Chapter Circular Badge Number */
+  .chapter-number {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .chapter-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .chapter-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .chapter-info h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  .chapter-info p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .chapter-status-icon {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+  }
+  
+  /* ==========================================================================
+     4. Unlocked vs Locked Theming
+     ========================================================================== */
+  
+  /* --- Unlocked/Active Card --- */
+  .chapter-card.active {
+    background-color: #fffaf2; /* Lighter cream container highlight */
+    border: 1px solid #ebdcc5;
+    box-shadow: 0 4px 12px rgba(139, 115, 85, 0.05);
+    cursor: pointer;
+  }
+  
+  .chapter-card.active:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(139, 115, 85, 0.1);
+  }
+  
+  .chapter-card.active .chapter-number {
+    background-color: #f3e5d0;
+    color: #a46d54;
+  }
+  
+  .chapter-card.active .chapter-date {
+    color: #b56c59; /* Rusty red accent tone */
+  }
+  
+  .chapter-card.active h2 {
+    color: #27211a;
+  }
+  
+  .chapter-card.active p {
+    color: #5c5043;
+  }
+  
+  .chapter-card.active .arrow-icon {
+    color: #7c6d5c;
+    font-size: 28px;
+  }
+  
+  /* --- Locked Cards --- */
+  .chapter-card.locked {
+    background-color: #ebdcc9; /* Muted, darker cream shade */
+    border: 1px solid transparent;
+    opacity: 0.85;
+  }
+  
+  .chapter-card.locked .chapter-number {
+    background-color: #decbba;
+    color: #837464;
+  }
+  
+  .chapter-card.locked .chapter-date {
+    color: #837464;
+  }
+  
+  .chapter-card.locked h2 {
+    color: #4b3f33;
+  }
+  
+  .chapter-card.locked p {
+    color: #837464;
+    font-style: italic;
+  }
+  
+  .chapter-card.locked .lock-icon {
+    font-size: 16px;
+    opacity: 0.4; /* Softens standard emoji look to match UI */
+    filter: grayscale(1);
+  }
