@@ -10,13 +10,20 @@ body{
     color:#2d2418;
     height:100vh;
 }
-
-.app{
-    display:flex;
-    height:100vh;
-    background:#ffffff;
+html, body {
+    height: 100%;
+    overflow: hidden;
 }
 
+body {
+    height: 100dvh; /* better for mobile than 100vh */
+}
+.app {
+    display: flex;
+    height: 100dvh;
+    background: #ffffff;
+    overflow: hidden;
+}
 /* SIDEBAR (Messenger style) */
 
 .sidebar{
@@ -415,20 +422,73 @@ body{
 
 
 /* MOBILE */
+@media (max-width: 768px) {
 
-@media (max-width:768px){
-
-    .sidebar{
-        width:100%;
+    .app {
+        flex-direction: column;
     }
 
-    .chat{
-        position:fixed;
-        inset:0;
-        display:none;
+    /* SIDEBAR becomes full screen list */
+    .sidebar {
+        width: 100%;
+        height: 100dvh;
+        display: flex;
     }
 
-    .chat.active{
-        display:flex;
+    /* CHAT becomes full screen when active */
+    .chat {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100dvh;
+        display: none;
+        flex-direction: column;
+        z-index: 100;
+    }
+
+    .chat.active {
+        display: flex;
+    }
+
+    /* messages adapt */
+    .messages {
+        padding: 12px;
+    }
+
+    .message {
+        max-width: 85%;
+        font-size: 14px;
+    }
+
+    /* choices stack tighter */
+    .choices {
+        padding: 10px;
+    }
+
+    .choice {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+    /* popup */
+    .popup-content {
+        width: 90%;
+        padding: 20px;
+    }
+
+    /* sidebar header smaller */
+    .sidebar-header {
+        font-size: 18px;
+        padding: 16px;
+    }
+
+    .conversation {
+        padding: 12px;
+    }
+
+    .avatar, .avatar1, .avatar2, .avatar3 {
+        width: 42px;
+        height: 42px;
+        font-size: 13px;
     }
 }
