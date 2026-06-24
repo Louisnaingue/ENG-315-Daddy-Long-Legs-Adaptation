@@ -1,12 +1,7 @@
 body {
     font-family: 'Georgia', serif;
 
-    background:
-        linear-gradient(
-        #c9b091,
-        rgba(181, 75, 9, 0.3)
-    ),
-        url("image/daddy.png");
+    background: url("image/back.png");
 
     background-size: cover;
     background-position: center;
@@ -38,6 +33,9 @@ p {
 }
 .par {
     margin-bottom: 5%;
+}
+.par2 {
+    color: aliceblue;
 }
 div {
     text-align: center; /* This forces the <a> button and text to align to the middle */
@@ -77,5 +75,26 @@ div {
     margin: 24px auto;     /* Centers it horizontally and adds breathing room top/bottom */
     line-height: 1.6;      /* Gives the text nice readability */
     font-size: 16px;       
-    color: #5c5043;        /* A soft, readable book-ish color */
+}
+@media (max-width: 768px) {
+    body {
+        font-family: 'Georgia', serif;
+    
+        background: url("image/back2.png");
+    
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    
+        margin: 0;
+        padding: 0;
+        color: rgb(22, 19, 16);
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+    }
+
 }
